@@ -2,6 +2,7 @@ local Ani = script:FindFirstAncestor("Ani")
 
 --< Modules >--
 local Roact = require(Ani.Roact)
+local Theme = require(Ani.Plugin.Components.Theme)
 
 --< Variables >--
 local e = Roact.createElement
@@ -46,14 +47,16 @@ function App:willUnmount()
 end
 
 function App:render()
-    return e(Roact.Portal, {
-        target = self.DockWidget;
-    }, {
-        Background = e("Frame", {
-            BackgroundColor3 = Color3.fromRGB(0, 255, 0);
-            Size = UDim2.fromScale(1, 1);
-        });
-    })
+    return Theme.with(function(theme)
+        return e(Roact.Portal, {
+            target = self.DockWidget;
+        }, {
+            Background = e("Frame", {
+                BackgroundColor3 = theme.Primary;
+                Size = UDim2.fromScale(1, 1);
+            });
+        })
+    end)
 end
 
 return App
