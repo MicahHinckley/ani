@@ -2,6 +2,7 @@ local Ani = script:FindFirstAncestor("Ani")
 
 --< Modules >--
 local Roact = require(Ani.Roact)
+local AssetBrowser = require(Ani.Plugin.Components.AssetBrowser)
 local Theme = require(Ani.Plugin.Components.Theme)
 
 --< Variables >--
@@ -54,6 +55,12 @@ function App:render()
             Background = e("Frame", {
                 BackgroundColor3 = theme.Primary;
                 Size = UDim2.fromScale(1, 1);
+            }, {
+                AssetBrowser = e(AssetBrowser, {
+                    AnchorPoint = Vector2.new(0.5, 0.5);
+                    Position = UDim2.fromScale(0.5, 0.5);
+                    Size = UDim2.new(1, -10, 1, -10);
+                });
             });
         })
     end)

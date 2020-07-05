@@ -6,11 +6,37 @@ local Roact = require(Ani.Roact)
 --< Themes >--
 local Themes = {
     Light = {
-        Primary = Color3.fromRGB(255, 255, 255);
+		ButtonFont = Enum.Font.GothamSemibold;
+		InputFont = Enum.Font.Code;
+		TitleFont = Enum.Font.GothamBold;
+		MainFont = Enum.Font.Gotham;
+
+		PrimaryText = Color3.fromRGB(64, 64, 64);
+
+		Primary = Color3.fromRGB(255, 255, 255);
+		Secondary = Color3.fromRGB(233, 233, 233);
+
+		TopBackgroundDark = Color3.fromRGB(211, 211, 211);
+		BottomBackgroundDark = Color3.fromRGB(126, 126, 126);
+
+		Border = Color3.fromRGB(170, 170, 170);
     };
 
     Dark = {
-        Primary = Color3.fromRGB(46, 46, 46);
+		ButtonFont = Enum.Font.GothamSemibold;
+		InputFont = Enum.Font.Code;
+		TitleFont = Enum.Font.GothamBold;
+		MainFont = Enum.Font.Gotham;
+
+		PrimaryText = Color3.fromRGB(235, 235, 235);
+
+		Primary = Color3.fromRGB(46, 46, 46);
+		Secondary = Color3.fromRGB(53, 53, 53);
+
+		TopBackgroundDark = Color3.fromRGB(58, 58, 58);
+		BottomBackgroundDark = Color3.fromRGB(18, 18, 18);
+
+		Border = Color3.fromRGB(30, 30, 30);
     };
 }
 
