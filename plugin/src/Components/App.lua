@@ -3,6 +3,9 @@ local Ani = script:FindFirstAncestor("Ani")
 --< Modules >--
 local Roact = require(Ani.Roact)
 
+--< Variables >--
+local e = Roact.createElement
+
 --< Component >--
 local App = Roact.Component:extend("App")
 
@@ -43,7 +46,14 @@ function App:willUnmount()
 end
 
 function App:render()
-    
+    return e(Roact.Portal, {
+        target = self.DockWidget;
+    }, {
+        Background = e("Frame", {
+            BackgroundColor3 = Color3.fromRGB(0, 255, 0);
+            Size = UDim2.fromScale(1, 1);
+        });
+    })
 end
 
 return App
