@@ -1,0 +1,3 @@
+[submodule "plugin/dependencies/roact"]
+	path = plugin/dependencies/roact
+	url = https://github.com/Roblox/roact
