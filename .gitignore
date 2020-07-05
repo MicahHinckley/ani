@@ -1,6 +1,10 @@
 # Project place file
 /Ani.rbxlx
 
+# Place files
+/plugin/AniTestPlace.rbxlx
+/plugin/AniTestPlace.rbxlx.lock
+
 # Roblox Studio lock files
 /*.rbxlx.lock
 /*.rbxl.lock

@@ -1,0 +1,18 @@
+{
+    "name": "Ani Test Place",
+    "tree": {
+        "$className": "DataModel",
+  
+        "ReplicatedStorage": {
+            "Ani": {
+                "$path": "default.project.json"
+            }
+        },
+
+        "Players": {
+            "$properties": {
+                "CharacterAutoLoads": false
+            }
+        }
+    }
+}
