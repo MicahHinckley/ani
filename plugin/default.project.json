@@ -1,0 +1,12 @@
+{
+    "name": "Ani",
+    "tree": {
+        "$className": "Folder",
+        "Plugin": {
+            "$path": "src"
+        },
+        "Roact": {
+            "$path": "dependencies/roact/src"
+        }
+    }
+}
