@@ -2,6 +2,9 @@ local Ani = script:FindFirstAncestor("Ani")
 
 --< Modules >--
 local Roact = require(Ani.Roact)
+local RoactRodux = require(Ani.RoactRodux)
+
+--< Components >--
 local SearchBar = require(Ani.Plugin.Components.SearchBar)
 local Asset = require(Ani.Plugin.Components.Asset)
 local Theme = require(Ani.Plugin.Components.Theme)
@@ -50,8 +53,10 @@ function AssetBrowser:render()
 
     Assets.ListLayout = e("UIListLayout")
 
-    for i = 1, 10 do
-        Assets["Asset" .. i] = e(Asset, {
+    for assetId,asset in pairs(self.props.Assets) do
+        Assets[assetId] = e(Asset, {
+            Name = asset.Name;
+            Path = asset.Path;
             NameSize = NameSize;
             PathSize = PathSize;
         })
@@ -111,4 +116,10 @@ function AssetBrowser:render()
     end)
 end
 
-return AssetBrowser
+local function MapStateToProps(state)
+    return {
+        Assets = state.Assets
+    }
+end
+
+return RoactRodux.connect(MapStateToProps)(AssetBrowser)

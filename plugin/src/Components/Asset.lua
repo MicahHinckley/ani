@@ -22,7 +22,7 @@ function Asset:render()
                 Size = UDim2.fromScale(self.props.NameSize, 1);
                 ClipsDescendants = true;
                 Font = theme.ButtonFont;
-                Text = "Run";
+                Text = self.props.Name;
                 TextColor3 = theme.PrimaryText;
                 TextSize = 15;
                 TextXAlignment = Enum.TextXAlignment.Left;
@@ -34,7 +34,7 @@ function Asset:render()
                 Size = UDim2.fromScale(self.props.PathSize, 1);
                 ClipsDescendants = true;
                 Font = theme.ButtonFont;
-                Text = "ReplicatedStorage.Animations.WalkRun";
+                Text = self.props.Path;
                 TextColor3 = theme.PrimaryText;
                 TextSize = 15;
                 TextXAlignment = Enum.TextXAlignment.Left;
