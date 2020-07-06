@@ -2,11 +2,21 @@
     "name": "Ani",
     "tree": {
         "$className": "Folder",
+
         "Plugin": {
             "$path": "src"
         },
+
         "Roact": {
             "$path": "dependencies/roact/src"
+        },
+
+        "Rodux": {
+            "$path": "dependencies/rodux/src"
+        },
+
+        "RoactRodux": {
+            "$path": "dependencies/roact-rodux/src"
         }
     }
 }
