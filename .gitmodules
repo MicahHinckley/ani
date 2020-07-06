@@ -1,3 +1,9 @@
 [submodule "plugin/dependencies/roact"]
 	path = plugin/dependencies/roact
 	url = https://github.com/Roblox/roact
+[submodule "plugin/dependencies/rodux"]
+	path = plugin/dependencies/rodux
+	url = https://github.com/Roblox/rodux
+[submodule "plugin/dependencies/roact-rodux"]
+	path = plugin/dependencies/roact-rodux
+	url = https://github.com/Roblox/roact-rodux
