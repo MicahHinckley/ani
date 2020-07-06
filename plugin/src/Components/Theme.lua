@@ -12,6 +12,8 @@ local Themes = {
 		MainFont = Enum.Font.Gotham;
 
 		PrimaryText = Color3.fromRGB(64, 64, 64);
+		InputText = Color3.fromRGB(40, 40, 40);
+		PlaceholderText = Color3.fromRGB(132, 132, 132);
 
 		Primary = Color3.fromRGB(255, 255, 255);
 		Secondary = Color3.fromRGB(233, 233, 233);
@@ -19,7 +21,11 @@ local Themes = {
 		TopBackgroundDark = Color3.fromRGB(211, 211, 211);
 		BottomBackgroundDark = Color3.fromRGB(126, 126, 126);
 
+		Input = Color3.fromRGB(255, 255, 255);
+
 		Border = Color3.fromRGB(170, 170, 170);
+
+		SearchButton = Color3.fromRGB(50, 50, 50);
     };
 
     Dark = {
@@ -29,6 +35,8 @@ local Themes = {
 		MainFont = Enum.Font.Gotham;
 
 		PrimaryText = Color3.fromRGB(235, 235, 235);
+		InputText = Color3.fromRGB(40, 40, 40);
+		PlaceholderText = Color3.fromRGB(132, 132, 132);
 
 		Primary = Color3.fromRGB(46, 46, 46);
 		Secondary = Color3.fromRGB(53, 53, 53);
@@ -36,7 +44,11 @@ local Themes = {
 		TopBackgroundDark = Color3.fromRGB(58, 58, 58);
 		BottomBackgroundDark = Color3.fromRGB(18, 18, 18);
 
+		Input = Color3.fromRGB(221, 221, 221);
+
 		Border = Color3.fromRGB(30, 30, 30);
+
+		SearchButton = Color3.fromRGB(50, 50, 50);
     };
 }
 

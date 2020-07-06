@@ -2,6 +2,7 @@ local Ani = script:FindFirstAncestor("Ani")
 
 --< Modules >--
 local Roact = require(Ani.Roact)
+local SearchBar = require(Ani.Plugin.Components.SearchBar)
 local Asset = require(Ani.Plugin.Components.Asset)
 local Theme = require(Ani.Plugin.Components.Theme)
 
@@ -68,9 +69,14 @@ function AssetBrowser:render()
                 CornerRadius = UDim.new(0, 4);
             });
 
+            SearchBar = e(SearchBar, {
+                Position = UDim2.fromOffset(5, 5);
+                Size = UDim2.new(1, -10, 0, 20);
+            });
+
             Categories = e("Frame", {
                 BackgroundTransparency = 1;
-                Position = UDim2.new(0, 5, 0, 5);
+                Position = UDim2.new(0, 5, 0, 30);
                 Size = UDim2.new(1, -10, 0, 20);
             }, {
                 Name = e(Category, {
@@ -98,8 +104,8 @@ function AssetBrowser:render()
             Assets = e("Frame", {
                 AnchorPoint = Vector2.new(0.5, 0);
                 BackgroundTransparency = 1;
-                Position = UDim2.new(0.5, 0, 0, 30);
-                Size = UDim2.new(1, -10, 1, -35);
+                Position = UDim2.new(0.5, 0, 0, 55);
+                Size = UDim2.new(1, -10, 1, -60);
             }, Assets);
         })
     end)
