@@ -24,6 +24,7 @@ function AssetWatcher.new(store)
     self.AncestryChangedConnections = {}
     self.NameChangedConnections = {}
     self.DescendantAddedConnections = {}
+    self.AncestorNameChangedConnections = {}
 
     return self
 end
@@ -62,9 +63,31 @@ function AssetWatcher:Watch()
         self.NameChangedConnections[instance] = nil
 
         self.AncestryChangedConnections[instance]:Disconnect()
-        self.AncestryChangedConnections[instance]= nil
+        self.AncestryChangedConnections[instance] = nil
+
+        for _,connection in ipairs(self.AncestorNameChangedConnections[instance]) do
+            connection:Disconnect()
+        end
+        self.AncestorNameChangedConnections[instance] = nil
 
         self.Store:dispatch(RemoveAsset(assetId))
+    end
+
+    local function UpdateAncestorConnections(assetId, instance)
+        for _,connection in ipairs(self.AncestorNameChangedConnections[instance]) do
+            connection:Disconnect()
+        end
+
+        self.AncestorNameChangedConnections[instance] = {}
+
+        local Parent = instance.Parent
+        while Parent do
+            table.insert(self.AncestorNameChangedConnections[instance], Parent:GetPropertyChangedSignal("Name"):Connect(function()
+                self.Store:dispatch(UpdateAsset(assetId, {Path = instance:GetFullName()}))
+            end))
+
+            Parent = Parent.Parent
+        end
     end
 
     local function OnInstanceAdded(instance)
@@ -83,6 +106,10 @@ function AssetWatcher:Watch()
 
         AssetId = AssetId or self:GenerateAssetId(Assets)
 
+        self.AncestorNameChangedConnections[instance] = {}
+
+        UpdateAncestorConnections(AssetId, instance)
+
         self.NameChangedConnections[instance] = instance:GetPropertyChangedSignal("Name"):Connect(function()
             self.Store:dispatch(UpdateAsset(AssetId, {Name = instance.Name; Path = instance:GetFullName()}))
         end)
@@ -92,6 +119,8 @@ function AssetWatcher:Watch()
                 if self:IsAssetInLookup(instance) then
                     -- Update the asset's path when it moves
                     self.Store:dispatch(UpdateAsset(AssetId, {Path = instance:GetFullName()}))
+
+                    UpdateAncestorConnections(AssetId, instance)
                 else
                     -- Destroy asset when it gets moved outside of LOOKUP
                     DestroyAsset(AssetId, instance)
@@ -135,6 +164,12 @@ function AssetWatcher:Stop()
 
     for _,connection in pairs(self.AncestryChangedConnections) do
         connection:Disconnect()
+    end
+
+    for _,connections in pairs(self.AncestorNameChangedConnections) do
+        for _,connection in ipairs(connections) do
+            connection:Disconnect()
+        end
     end
 end
 
