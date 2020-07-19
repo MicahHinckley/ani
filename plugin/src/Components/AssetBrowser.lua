@@ -9,6 +9,8 @@ local SearchBar = require(Ani.Plugin.Components.SearchBar)
 local Asset = require(Ani.Plugin.Components.Asset)
 local Theme = require(Ani.Plugin.Components.Theme)
 
+local Filter = require(Ani.Plugin.Filter)
+
 --< Variables >--
 local e = Roact.createElement
 
@@ -45,6 +47,12 @@ end
 --< Component >--
 local AssetBrowser = Roact.Component:extend("AssetBrowser")
 
+function AssetBrowser:init()
+    self:setState({
+        Filter = "";
+    })
+end
+
 function AssetBrowser:render()
     local NameSize = 0.3
     local PathSize = 0.7
@@ -54,12 +62,17 @@ function AssetBrowser:render()
     Assets.ListLayout = e("UIListLayout")
 
     for assetId,asset in pairs(self.props.Assets) do
-        Assets[assetId] = e(Asset, {
-            Name = asset.Name;
-            Path = asset.Path;
-            NameSize = NameSize;
-            PathSize = PathSize;
-        })
+        local Passes, LayoutOrder = Filter(asset.Name, self.state.Filter)
+
+        if Passes then
+            Assets[assetId] = e(Asset, {
+                Name = asset.Name;
+                Path = asset.Path;
+                NameSize = NameSize;
+                PathSize = PathSize;
+                LayoutOrder = LayoutOrder;
+            })
+        end
     end
 
     return Theme.with(function(theme)
@@ -77,6 +90,12 @@ function AssetBrowser:render()
             SearchBar = e(SearchBar, {
                 Position = UDim2.fromOffset(5, 5);
                 Size = UDim2.new(1, -10, 0, 20);
+
+                FilterUpdated = function(filter)
+                    self:setState({
+                        Filter = filter;
+                    })
+                end;
             });
 
             Categories = e("Frame", {
