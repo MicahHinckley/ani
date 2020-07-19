@@ -15,6 +15,7 @@ function Asset:render()
         return e("Frame", {
             BackgroundColor3 = theme.Secondary;
             BorderSizePixel = 0;
+            LayoutOrder = self.props.LayoutOrder;
             Size = UDim2.new(1, 0, 0, 15);
         }, {
             Name = e("TextLabel", {

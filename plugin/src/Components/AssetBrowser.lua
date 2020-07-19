@@ -9,6 +9,8 @@ local SearchBar = require(Ani.Plugin.Components.SearchBar)
 local Asset = require(Ani.Plugin.Components.Asset)
 local Theme = require(Ani.Plugin.Components.Theme)
 
+local Filter = require(Ani.Plugin.Filter)
+
 --< Variables >--
 local e = Roact.createElement
 
@@ -60,12 +62,15 @@ function AssetBrowser:render()
     Assets.ListLayout = e("UIListLayout")
 
     for assetId,asset in pairs(self.props.Assets) do
-        if self.state.Filter == "" or string.find(asset.Name:lower(), self.state.Filter:lower()) then
+        local Passes, LayoutOrder = Filter(asset.Name, self.state.Filter)
+
+        if Passes then
             Assets[assetId] = e(Asset, {
                 Name = asset.Name;
                 Path = asset.Path;
                 NameSize = NameSize;
                 PathSize = PathSize;
+                LayoutOrder = LayoutOrder;
             })
         end
     end
