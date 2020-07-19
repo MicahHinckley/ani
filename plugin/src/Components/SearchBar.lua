@@ -44,6 +44,10 @@ function SearchBar:render()
                 TextColor3 = theme.InputText;
                 TextSize = 14;
                 TextXAlignment = Enum.TextXAlignment.Left;
+
+                [Roact.Change.Text] = function(rbx)
+                    self.props.FilterUpdated(rbx.Text)
+                end;
             }, {
                 Padding = e("UIPadding", {
                     PaddingLeft = UDim.new(0, 5);
