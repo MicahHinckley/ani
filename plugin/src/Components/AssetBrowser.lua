@@ -60,7 +60,7 @@ function AssetBrowser:render()
     Assets.ListLayout = e("UIListLayout")
 
     for assetId,asset in pairs(self.props.Assets) do
-        if self.state.Filter == "" or string.find(asset.Name, self.state.Filter) then
+        if self.state.Filter == "" or string.find(asset.Name:lower(), self.state.Filter:lower()) then
             Assets[assetId] = e(Asset, {
                 Name = asset.Name;
                 Path = asset.Path;
